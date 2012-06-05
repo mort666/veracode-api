@@ -1,9 +1,6 @@
 require 'nokogiri'
 require 'veracode/api/builds'
 require 'veracode/api/detailed'
-require 'veracode/api/parse'
-require 'rubygems'
-require 'xmlsimple'
 
 require 'pp'
 
@@ -19,9 +16,7 @@ module Veracode
   	def get_application_builds
   	  xml = getXML(GET_APP_BUILDS_URI, @username, @password)
   	  if xml.is_a?(Net::HTTPSuccess)
-        parser = Veracode::Result::Builds::Applications.new
-
-        builds = parser.parse(xml.body)
+        builds = Veracode::Result::Builds::Applications.from_xml(xml.body)
       else
         xml.error!
       end
@@ -30,11 +25,7 @@ module Veracode
   	def get_detailed_report(build_id)
   	  xml = getXML(DETAILED_REPORT_URI + "?build_id=" + build_id, @username, @password)
   	  if xml.is_a?(Net::HTTPSuccess)
-  	    parser = Veracode::Result::DetailedReport.new
-  	    
-  	    #puts xml.body
-  	    # XmlSimple.xml_in(xml.body)
-  	    report = parser.parse(xml.body)
+  	    report = Veracode::Result::DetailedReport.from_xml(xml.body)
   	  else
         xml.error!
       end

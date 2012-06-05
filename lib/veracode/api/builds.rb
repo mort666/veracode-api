@@ -1,56 +1,57 @@
-require 'veracode/api/parse'
+require 'roxml'
 
 module Veracode 
   module Result
     module Builds
-      class Applications
-        include Veracode::Parser
-        attr_accessor :applications
-
-        @applications
-    
-        def initialize
-          @applications = []
-        end
+      class AnalysisUnit
+        include ROXML
         
-        class Application
-            VALID_ATTRIBUTE_KEYS = [ :app_name, :app_id, :industry_vertical, :assurance_level, 
-                                :business_criticality, :origin, :cots, :business_unit, :tags ].freeze
-
-            attr_accessor *VALID_ATTRIBUTE_KEYS
-
-            attr_accessor :builds
-
-            def initialize(attributes)
-              @builds = []
-                VALID_ATTRIBUTE_KEYS.each{|k| self.send("#{k}=", Hash[attributes][k.to_s]) }
-            end   
-
-            class Build
-              VALID_ATTRIBUTE_KEYS = [ :version, :build_id, :submitter, :platform, :lifecycle_stage, :results_ready, :policy_name, 
-                                 :policy_version, :policy_compliance_status, :rules_status, :grace_period_expired,
-                                 :scan_overdue ].freeze
-
-              attr_accessor *VALID_ATTRIBUTE_KEYS
-              attr_accessor :units
-
-              def initialize(attributes)
-                VALID_ATTRIBUTE_KEYS.each{|k| self.send("#{k}=", Hash[attributes][k.to_s]) }
-                  @units = []
-              end  
-
-              class AnalysisUnit
-                VALID_ATTRIBUTE_KEYS = [ :analysis_type, :status, :published_date ].freeze
-                
-                attr_accessor *VALID_ATTRIBUTE_KEYS
-                
-                def initialize(attributes)
-                  VALID_ATTRIBUTE_KEYS.each{|k| self.send("#{k}=", Hash[attributes][k.to_s]) }
-                end
-              end  
-            end 
-        end
+        xml_accessor :analysis_type, :from => "@analysis_type"
+        xml_accessor :status, :from => "@status"
+        xml_accessor :published_date, :from => "@published_date"
       end
+      
+      class Build
+        include ROXML
+        
+        xml_accessor :version, :from => "@version"
+        xml_accessor :build_id, :from =>  "@build_id"
+        xml_accessor :submitter, :from => "@submitter"
+        xml_accessor :platform, :from => "@platform"
+        xml_accessor :lifecycle_stage, :from => "@lifecycle_stage"
+        xml_accessor :results_ready, :from => "@results_ready"
+        xml_accessor :policy_name, :from => "@policy_name"
+        xml_accessor :policy_version, :from => "@policy_version"
+        xml_accessor :policy_compliance_status,  :from => "@policy_compliance_status"
+        xml_accessor :rules_status, :from => "@rules_status"
+        xml_accessor :grace_period_expired, :from => "@grace_period_expired"
+        xml_accessor :scan_overdue, :from => "@scan_overdue"
+
+        xml_accessor  :analysis_units, :as => [AnalysisUnit]
+      end
+      
+      class Application
+        include ROXML
+            
+        xml_accessor :app_name, :from => "@app_name"
+        xml_accessor :app_id,  :from => "@app_id"
+        xml_accessor :industry_vertical,  :from => "@industry_vertical"
+        xml_accessor :assurance_level,  :from => "@assurance_level"
+        xml_accessor :business_criticality,  :from => "business_criticality"
+        xml_accessor :origin,  :from => "@origin"
+        xml_accessor :cots,  :from => "@cots"
+        xml_accessor :business_unit,  :from => "@business_unit"
+        xml_accessor :tags, :from => "@tags"
+        xml_accessor :builds, :as => [Build]
+
+      end
+      
+      class Applications
+        include ROXML
+        
+        xml_accessor :applications, :as => [Application]
+      end
+              
     end
   end
 end
