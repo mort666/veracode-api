@@ -6577,4 +6577,154 @@ http_interactions:
         sev-2-change=\"14\" sev-3-change=\"148\" sev-4-change=\"22\" sev-5-change=\"6\"/>\n</detailedreport>\n"
     http_version: !!null 
   recorded_at: Wed, 06 Jun 2012 16:25:28 GMT
+- request:
+    method: get
+    uri: https://test:test@analysiscenter.veracode.com/api/2.0/summaryreport.do?build_id=44905
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Pragma:
+      - ''
+      Cache-Control:
+      - no-store private must-revalidate
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - JSESSIONID=25463857974C8954780AA750F812AEB4; Path=/; Secure
+      - JSESSIONID=6EDFE24528ECA1527F6865FB60E9169B; Path=/; Secure
+      Content-Type:
+      - text/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Wed, 06 Jun 2012 22:41:58 GMT
+      Server:
+      - Apache
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+
+        <summaryreport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.veracode.com/schema/reports/export/1.0"
+        xsi:schemaLocation="https://www.veracode.com/schema/reports/export/1.0 https://analysiscenter.veracode.com/resource/summaryreport.xsd"
+        report_format_version="1.1" app_name="WebGoat" app_id="32338" first_build_submitted_date="2012-02-29
+        16:17:16 UTC" version="5.0" build_id="44905" submitter="Veracode" platform="Java"
+        assurance_level="5" business_criticality="5" generation_date="2012-06-06 22:41:58
+        UTC" veracode_level="VL1" total_flaws="190" flaws_not_mitigated="190" teams=""
+        life_cycle_stage="External or Beta Testing" planned_deployment_date="" last_update_time="2012-03-01
+        15:03:51 UTC" is_latest_build="true" policy_name="Veracode Transitional Very
+        High" policy_version="1" policy_compliance_status="Did Not Pass" policy_rules_status="Did
+        Not Pass" grace_period_expired="true" scan_overdue="false" any_type_scan_due="2012-03-01
+        15:03:50 UTC" business_owner="" business_unit="Not Specified" tags="">
+
+        <static-analysis rating="F" score="59" submitted_date="2012-02-29 16:16:57
+        UTC" published_date="2012-03-01 14:26:18 UTC" analysis_size_bytes="3734905">
+
+        <modules>
+
+        <module name="WebGoat-5.0-with-jsp.war" compiler="JAVAC_6" os="Java J2SE 6"
+        architecture="JVM" score="59" numflawssev0="0" numflawssev1="0" numflawssev2="14"
+        numflawssev3="136" numflawssev4="21" numflawssev5="2"/>
+
+        </modules>
+
+        </static-analysis>
+
+        <dynamic-analysis rating="D" score="89" submitted_date="2012-03-01 14:58:22
+        UTC" published_date="2012-03-01 15:03:50 UTC">
+
+        <modules>
+
+        <module name="dynamic_analysis" compiler="Unknown" os="" architecture="" score="89"
+        numflawssev0="0" numflawssev1="0" numflawssev2="0" numflawssev3="10" numflawssev4="1"
+        numflawssev5="1" target_url="http://10.10.31.202:8080/webgoat"/>
+
+        </modules>
+
+        </dynamic-analysis>
+
+        <manual-analysis rating="D" score="81" submitted_date="2012-03-01 14:59:07
+        UTC" published_date="2012-03-01 14:59:14 UTC">
+
+        <cia_adjustment>0</cia_adjustment>
+
+        <modules>
+
+        <module name="manual_analysis" compiler="Unknown" os="" architecture="" score="81"
+        numflawssev0="0" numflawssev1="0" numflawssev2="0" numflawssev3="2" numflawssev4="0"
+        numflawssev5="3"/>
+
+        </modules>
+
+        </manual-analysis>
+
+        <severity level="5">
+
+        <category categoryname="OS Command Injection" severity="Very High" count="3"/>
+
+        <category categoryname="Other" severity="Very High" count="1"/>
+
+        <category categoryname="Directory Traversal" severity="Very High" count="1"/>
+
+        <category categoryname="Insufficient Input Validation" severity="Very High"
+        count="1"/>
+
+        </severity>
+
+        <severity level="4">
+
+        <category categoryname="SQL Injection" severity="High" count="22"/>
+
+        </severity>
+
+        <severity level="3">
+
+        <category categoryname="Cross-Site Scripting (XSS)" severity="Medium" count="127"/>
+
+        <category categoryname="CRLF Injection" severity="Medium" count="6"/>
+
+        <category categoryname="Code Quality" severity="Medium" count="4"/>
+
+        <category categoryname="Directory Traversal" severity="Medium" count="4"/>
+
+        <category categoryname="Credentials Management" severity="Medium" count="2"/>
+
+        <category categoryname="Insufficient Input Validation" severity="Medium" count="2"/>
+
+        <category categoryname="Encapsulation" severity="Medium" count="1"/>
+
+        <category categoryname="Cryptographic Issues" severity="Medium" count="1"/>
+
+        <category categoryname="Race Conditions" severity="Medium" count="1"/>
+
+        </severity>
+
+        <severity level="2">
+
+        <category categoryname="API Abuse" severity="Low" count="5"/>
+
+        <category categoryname="Cryptographic Issues" severity="Low" count="5"/>
+
+        <category categoryname="Code Quality" severity="Low" count="4"/>
+
+        </severity>
+
+        <severity level="1"/>
+
+        <severity level="0"/>
+
+        <flaw-status new="190" reopen="0" open="0" fixed="0" total="190" not_mitigated="190"
+        sev-1-change="0" sev-2-change="14" sev-3-change="148" sev-4-change="22" sev-5-change="6"/>
+
+        </summaryreport>
+
+'
+    http_version: !!null 
+  recorded_at: Wed, 06 Jun 2012 22:41:58 GMT
 recorded_with: VCR 2.2.0

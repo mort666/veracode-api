@@ -1,8 +1,8 @@
 require 'nokogiri'
 require 'veracode/api/builds'
 require 'veracode/api/detailed'
+require 'veracode/api/summary'
 
-require 'pp'
 
 module Veracode
   class Results < Veracode::Base
@@ -19,6 +19,16 @@ module Veracode
 	    when 200
         builds = Veracode::Result::Builds::Applications.from_xml(xml.body)
       else
+        xml.error!
+      end
+  	end
+  	
+  	def get_summary_report(build_id)
+  	  xml = getXML(SUMMARY_REPORT_URI + "?build_id=" + build_id)
+  	  case xml.code
+	    when 200
+	      report = Veracode::Result::SummaryReport.from_xml(xml.body)
+  	  else
         xml.error!
       end
   	end

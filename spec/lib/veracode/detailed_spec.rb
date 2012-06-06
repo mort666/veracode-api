@@ -1,7 +1,7 @@
 require (File.expand_path('./../../../spec_helper', __FILE__))
 
 describe Veracode::Results do
-  describe "GET profile" do
+  describe "GET detailed report" do
 
     let(:veracode) { Veracode::Results.new(:username => "test", :password => "test") }
 
@@ -14,30 +14,11 @@ describe Veracode::Results do
     end
 
     it "must have a get_application_builds method" do
-      veracode.must_respond_to :get_application_builds
-    end
-
-    it "must have a get_application_builds method" do
       veracode.must_respond_to :get_detailed_report
-    end
-
-    it "must parse the api response from XML to Veracode::Result::Builds::Applications" do
-      veracode.get_application_builds.must_be_instance_of Veracode::Result::Builds::Applications
     end
 
     it "must parse the api response from XML to Veracode::Result::DetailedReport" do
       veracode.get_detailed_report("44905").must_be_instance_of Veracode::Result::DetailedReport
-    end
-    
-    describe "dynamic attributes for builds" do
-
-      before do
-        @builds = veracode.get_application_builds
-      end
-
-      it "must raise method missing if attribute is not present" do
-        lambda { @builds.foo_attribute }.must_raise NoMethodError
-      end
     end
     
     describe "dynamic attributes for results" do

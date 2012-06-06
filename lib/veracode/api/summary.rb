@@ -3,34 +3,20 @@ require 'veracode/api/flaws'
 
 module Veracode
   module Result
-    class CWE < Base
-      xml_reader :cweid, :from => "@cweid"
-      xml_reader :cwename, :from => "@cwename"
-      xml_reader :pcirelated?, :from => "@pcirelated"
-      
-      xml_reader :description, :as => [TextType]
-      xml_reader :staticflaws, :as => Flaws
-      xml_reader :dynamicflaws, :as => Flaws
-      xml_reader :manualflaws, :as => Flaws
-    end
     
-    class Category < Base
-      xml_reader :categoryid, :from => "@categoryid"
-      xml_reader :categoryname, :from => "@categoryname"
-      xml_reader :pcirelated?, :from => "pcirelated"
-      
-      xml_reader :desc, :as => Para
-      xml_reader :recommendations, :as => Para
-      xml_reader :cwe, :as => [CWE]
-    end
+      class SummaryCategory < Base
+        xml_reader :categoryname, :from => :attr
+        xml_reader :severity, :from => :attr
+        xml_reader :count, :from => :attr
+      end
+
+      class SummarySeverity < Base
+        xml_reader :level, :from => "@level"
+
+        xml_reader :categories, :as => [SummaryCategory]
+      end
     
-    class Severity < Base
-      xml_reader :level, :from => "@level"
-      
-      xml_reader :categories, :as => [Category]
-    end
-    
-    class DetailedReport < Base
+    class SummaryReport < Base
       xml_convention :dasherize
       
       xml_reader :report_format_version, :from => "@report_format_version"
@@ -39,8 +25,8 @@ module Veracode
       xml_reader :first_build_submitted_date, :from => "@first_build_submitted_date"
       xml_reader :version, :from => "@version"
       xml_reader :build_id, :from => "@build_id"
-      xml_reader :submitter, :from => "@submitter"
       xml_reader :vendor, :from => "@vendor"
+      xml_reader :submitter, :from => "@submitter"
       xml_reader :platform, :from => "@platform"
       xml_reader :assurance_level, :from => "@assurance_level"
       xml_reader :business_criticality, :from => "@business_criticality"
@@ -69,10 +55,9 @@ module Veracode
       xml_reader :dynamic_analysis, :as => Analysis
       xml_reader :manual_analysis, :as => ManualAnalysis
       
-      xml_reader :severity, :as => [Severity]
+      xml_reader :severity, :as => [SummarySeverity]
       
       xml_reader :flaw_status, :as => FlawStatus
     end
-    
   end
 end
