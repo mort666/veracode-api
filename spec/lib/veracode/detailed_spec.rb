@@ -13,7 +13,7 @@ describe Veracode::Results do
       VCR.eject_cassette
     end
 
-    it "must have a get_application_builds method" do
+    it "must have a get_detailed_report method" do
       veracode.must_respond_to :get_detailed_report
     end
 

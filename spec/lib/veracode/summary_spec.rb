@@ -13,6 +13,10 @@ describe Veracode::Results do
       VCR.eject_cassette
     end
 
+    it "must have a get_summary_report method" do
+      veracode.must_respond_to :get_summary_report
+    end
+
     it "must parse the api response from XML to Veracode::Result::SummaryReport" do
       veracode.get_summary_report("44905").must_be_instance_of Veracode::Result::SummaryReport
     end

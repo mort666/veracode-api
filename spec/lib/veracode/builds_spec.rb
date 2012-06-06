@@ -1,7 +1,7 @@
 require (File.expand_path('./../../../spec_helper', __FILE__))
 
 describe Veracode::Results do
-  describe "GET profile" do
+  describe "GET builds" do
 
     let(:veracode) { Veracode::Results.new(:username => "test", :password => "test") }
 
