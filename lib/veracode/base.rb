@@ -1,10 +1,10 @@
-require "net/http"
-require "net/https"
-require "uri"
-
 module Veracode
   class Base
     attr_accessor *Config::VALID_OPTIONS_KEYS
+    
+    include HTTParty
+
+    base_uri 'https://analysiscenter.veracode.com'
     
     def initialize(options={})
       attrs = Veracode.options.merge(options)
@@ -13,15 +13,10 @@ module Veracode
       end
     end
     
-    def getXML(path, username, password, debug=false)
-      url = URI.parse(path)
-      req = Net::HTTP::Get.new(url.request_uri)
-      req.basic_auth username, password
-      
-      site = Net::HTTP.new(url.host, url.port)
-      site.use_ssl = true
-      site.set_debug_output $stderr if debug
-      resp = site.start {|http| http.request(req) }
+    def getXML(path, debug=false)
+      auth = { :username => @username, :password => @password }
+
+      self.class.get(path, :basic_auth => auth)
     end
     
   end

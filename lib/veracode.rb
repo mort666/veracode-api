@@ -1,3 +1,5 @@
+require "httparty"
+
 require "veracode/version"
 require "veracode/config"
 require "veracode/base"

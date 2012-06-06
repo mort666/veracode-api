@@ -1,4 +1,5 @@
 require 'veracode/api/types'
+require 'veracode/api/flaws'
 
 module Veracode
   module Result
@@ -49,6 +50,9 @@ module Veracode
       xml_reader :pcirelated?, :from => "@pcirelated"
       
       xml_reader :description, :as => [TextType]
+      xml_reader :staticflaws, :as => Flaws
+      xml_reader :dynamicflaws, :as => Flaws
+      xml_reader :manualflaws, :as => Flaws
     end
     
     class Category < Base
@@ -60,7 +64,21 @@ module Veracode
       xml_reader :recommendations, :as => Para
       xml_reader :cwe, :as => [CWE]
     end
-      
+    
+    class FlawStatus < Base
+      xml_reader :new, :from => :attr
+      xml_reader :reopen, :from => :attr
+      xml_reader :open, :from => :attr
+      xml_reader :fixed, :from => :attr
+      xml_reader :total, :from => :attr
+      xml_reader :not_mitigated, :from => :attr
+      xml_reader :sev_1_change, :from => :attr
+      xml_reader :sev_2_change, :from => :attr
+      xml_reader :sev_3_change, :from => :attr
+      xml_reader :sev_4_change, :from => :attr
+      xml_reader :sev_5_change, :from => :attr
+    end
+    
     class Severity < Base
       xml_reader :level, :from => "@level"
       
@@ -107,6 +125,7 @@ module Veracode
       
       xml_reader :severity, :as => [Severity]
       
+      xml_reader :flaw_status, :as => FlawStatus
     end
     
   end
