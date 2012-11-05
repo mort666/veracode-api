@@ -23,6 +23,8 @@ TODO
 ----
 
 * Better Documentation
+* Upload Functionality
+* User Admin Functionality
 
 Issues
 ------

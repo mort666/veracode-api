@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Veracode::VERSION
   s.authors     = ["Stephen Kapp"]
   s.email       = ["mort666@virus.org"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/mort666/veracode-api"
   s.summary     = %q{Veracode Analysis Service API Wrapper}
   s.description = %q{Ruby API Wrapper to access Veracode Security Analysis Service API}
 
