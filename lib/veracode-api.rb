@@ -8,5 +8,7 @@ require "veracode/admin"
 require "veracode/results"
 
 module Veracode
-  extend Veracode::Config
+  module API
+    extend Veracode::API::Config
+  end
 end

@@ -4,7 +4,7 @@ require "veracode/version"
 
 Gem::Specification.new do |s|
   s.name        = "veracode-api"
-  s.version     = Veracode::VERSION
+  s.version     = Veracode::API::VERSION
   s.authors     = ["Stephen Kapp"]
   s.email       = ["mort666@virus.org"]
   s.homepage    = "https://github.com/mort666/veracode-api"

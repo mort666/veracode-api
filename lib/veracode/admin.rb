@@ -1,4 +1,6 @@
 module Veracode
-  class Admin < Veracode::Base
+  module API
+    class Admin < Veracode::API::Base
+    end
   end
 end

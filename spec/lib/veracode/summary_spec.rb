@@ -1,9 +1,9 @@
 require (File.expand_path('./../../../spec_helper', __FILE__))
 
-describe Veracode::Results do
+describe Veracode::API::Results do
   describe "GET summary report" do
 
-    let(:veracode) { Veracode::Results.new(:username => "test", :password => "test") }
+    let(:veracode) { Veracode::API::Results.new(:username => "test", :password => "test") }
 
     before do
       VCR.insert_cassette 'base', :record => :new_episodes

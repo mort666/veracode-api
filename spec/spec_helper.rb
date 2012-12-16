@@ -1,7 +1,7 @@
 #we need the actual library file
 # require_relative '../lib/veracode'
 # For Ruby < 1.9.3, use this instead of require_relative
-require(File.expand_path('../../lib/veracode', __FILE__))
+require(File.expand_path('../../lib/veracode-api', __FILE__))
 
 #dependencies
 require 'minitest/autorun'
