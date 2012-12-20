@@ -43,6 +43,20 @@ describe Veracode::API::Results do
         @result.manual_analysis.must_be_instance_of Veracode::Result::ManualAnalysis
       end
 
+      it "must be an instance of Veracode::Result::FlawStatus" do
+        @result.flaw_status.must_be_instance_of Veracode::Result::FlawStatus
+      end
+      
+      it "must be an instance of Veracode::Result::Severity" do
+        @result.severity.each do |sev|
+          sev.must_be_instance_of Veracode::Result::Severity
+        end
+      end
+      
+      it "must be an instance of TrueClass" do
+        @result.is_latest_build?.must_be_instance_of TrueClass
+      end
+
       it "must raise method missing if attribute is not present" do
         lambda { @result.foo_attribute }.must_raise NoMethodError
       end
