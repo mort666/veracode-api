@@ -2,46 +2,89 @@ require 'veracode/api/types'
 
 module Veracode 
   module Result
-    module Builds
-      class AnalysisUnit < Base
-        xml_reader :analysis_type, :from => "@analysis_type"
-        xml_reader :status, :from => "@status"
-        xml_reader :published_date, :from => "@published_date"
+    module Builds 
+      class AnalysisUnit < Base 
+        api_field :analysis_type, :tag => :analysis_type
+        api_field :status, :tag => :status
+        api_field :published_date, :tag => :published_date
       end
       
-      class Build < Base
-        xml_reader :version, :from => "@version"
-        xml_reader :build_id, :from =>  "@build_id"
-        xml_reader :submitter, :from => "@submitter"
-        xml_reader :platform, :from => "@platform"
-        xml_reader :lifecycle_stage, :from => "@lifecycle_stage"
-        xml_reader :results_ready, :from => "@results_ready"
-        xml_reader :policy_name, :from => "@policy_name"
-        xml_reader :policy_version, :from => "@policy_version"
-        xml_reader :policy_compliance_status,  :from => "@policy_compliance_status"
-        xml_reader :rules_status, :from => "@rules_status"
-        xml_reader :grace_period_expired, :from => "@grace_period_expired"
-        xml_reader :scan_overdue, :from => "@scan_overdue"
-
-        xml_reader  :analysis_units, :as => [AnalysisUnit]
+      class Build < Base 
+        api_field :version, :tag => :version
+        api_field :build_id, :tag => :build_id
+        api_field :submitter, :tag => :submitter
+        api_field :platform, :tag => :platform
+        api_field :lifecycle_stage, :tag => :lifecycle_stage
+        api_field :policy_name, :tag => :policy_name
+        api_field :policy_version, :tag => :policy_version
+        api_field :policy_compliance_status, :tag => :policy_compliance_status
+        api_field :rules_status, :tag => :rules_status
+        
+        def grace_period_expired?
+          @grace_period_expired ||= @xml_hash.grace_period_expired.to_bool
+        end
+        
+        def scan_overdue?
+          @scan_overdue ||= @xml_hash.scan_overdue.to_bool
+        end
+        
+        def results_ready?
+          @results_ready ||= @xml_hash.results_ready.to_bool
+        end
+                
+        def analysis_units
+          @analysis_units ||= []
+          if @analysis_units.empty?
+            if @xml_hash.analysis_unit.class == Array
+              @analysis_units = @xml_hash.analysis_unit.map do |analysis_unit|
+                AnalysisUnit.new(analysis_unit)
+              end
+            else
+              @analysis_units << AnalysisUnit.new(@xml_hash.analysis_unit)
+            end
+          end
+          return @analysis_units
+        end
       end
       
       class Application < Base
-        xml_reader :app_name, :from => "@app_name"
-        xml_reader :app_id,  :from => "@app_id"
-        xml_reader :industry_vertical,  :from => "@industry_vertical"
-        xml_reader :assurance_level,  :from => "@assurance_level"
-        xml_reader :business_criticality,  :from => "business_criticality"
-        xml_reader :origin,  :from => "@origin"
-        xml_reader :cots,  :from => "@cots"
-        xml_reader :business_unit,  :from => "@business_unit"
-        xml_reader :tags, :from => "@tags"
-        xml_reader :builds, :as => [Build]
-
+        api_field :app_name, :tag => :app_name
+        api_field :app_id, :tag => :app_id
+        api_field :industry_vertical, :tag => :industry_vertical
+        api_field :assurance_level, :tag => :assurance_level
+        api_field :business_criticality, :tag => :business_criticality
+        api_field :origin, :tag => :origin
+        api_field :business_unit, :tag => :business_unit
+        api_field :tags, :tag => :tags
+        
+        def cots?
+          @cots ||= @xml_hash.cots.to_bool
+        end
+        
+        def builds
+          @builds ||= []
+          if @builds.empty?
+            if @xml_hash.build.class == Array
+              @builds = @xml_hash.build.map do |build|
+                Build.new(build)
+              end
+            else
+              @builds << Build.new(@xml_hash.build)
+            end
+          end
+          return @builds
+        end        
       end
       
       class Applications < Base
-        xml_reader :applications, :as => [Application]
+        def applications
+          @applications ||= []
+          if @applications.empty?
+            @applications = @xml_hash.applicationbuilds.application.map do |application|
+              Application.new(application)
+            end
+          end
+        end
       end
               
     end

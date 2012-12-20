@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   
   s.add_dependency "httparty"
+  s.add_dependency "rexml"
+  s.add_dependency "nori"
   s.add_dependency "nokogiri"
   s.add_dependency "xml-simple"
   s.add_dependency "roxml"
