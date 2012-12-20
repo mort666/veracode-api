@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'veracode/parser/parser'
 require 'veracode/api/builds'
 require 'veracode/api/detailed'
 require 'veracode/api/summary'
@@ -18,7 +19,9 @@ module Veracode
     	  xml = getXML(GET_APP_BUILDS_URI)
     	  case xml.code
   	    when 200
-          builds = Veracode::Result::Builds::Applications.from_xml(xml.body)
+  	      clean_xml = xml.body.strip
+  	      parsed = Veracode::Parser.parse(clean_xml)
+          builds = Veracode::Result::Builds::Applications.new(parsed)
         else
           xml.error!
         end
@@ -28,7 +31,9 @@ module Veracode
     	  xml = getXML(SUMMARY_REPORT_URI + "?build_id=" + build_id)
     	  case xml.code
   	    when 200
-  	      report = Veracode::Result::SummaryReport.from_xml(xml.body)
+  	      clean_xml = xml.body.strip
+  	      parsed = Veracode::Parser.parse(clean_xml)
+  	      report = Veracode::Result::SummaryReport.new(parsed.summaryreport)
     	  else
           xml.error!
         end
@@ -38,7 +43,9 @@ module Veracode
     	  xml = getXML(DETAILED_REPORT_URI + "?build_id=" + build_id)
     	  case xml.code
   	    when 200
-    	    report = Veracode::Result::DetailedReport.from_xml(xml.body)
+    	    clean_xml = xml.body.strip
+  	      parsed = Veracode::Parser.parse(clean_xml)          
+    	    report = Veracode::Result::DetailedReport.new(parsed.detailedreport)
     	  else
           xml.error!
         end

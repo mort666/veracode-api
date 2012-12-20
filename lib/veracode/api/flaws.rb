@@ -3,80 +3,152 @@ require 'veracode/api/types'
 module Veracode
   module Result
     class AnnotationType < Base
-      xml_reader :action, :from => :attr
-      xml_reader :description, :from => :attr
-      xml_reader :user, :from => :attr
-      xml_reader :date, :from => :attr
+      api_field :action, :tag => :action
+      api_field :description, :tag => :description
+      api_field :user, :tag => :user
+      api_field :date, :tag => :date
     end
     
     class Annotations < Base
-      xml_reader :annotation, :as => [AnnotationType]
+      def annotation
+        @annotations ||= [] 
+        begin
+          if @annotations.empty?
+            if @xml_hash.annotation.class == Array 
+              @annotations = @xml_hash.annotation.map do |annotation|
+                AnnotationType.new(annotation)
+              end
+            else
+              @annotations << AnnotationType.new(@xml_hash.annotation) 
+            end
+          end
+        rescue NoMethodError
+        end
+        
+        return @annotations
+      end
     end
     
     class MitigationType < Base
-      xml_reader :action, :from => :attr
-      xml_reader :description, :from => :attr
-      xml_reader :user, :from => :attr
-      xml_reader :date, :from => :attr
+      api_field :action, :tag => :action
+      api_field :description, :tag => :description
+      api_field :user, :tag => :user
+      api_field :date, :tag => :date
     end
     
     class Mitigations < Base
-      xml_reader :mitigation, :as => [MitigationType]
+      def mitigation
+        @mitigations ||= [] 
+        begin
+          if @mitigations.empty?
+            if @xml_hash.mitigation.class == Array 
+              @mitigations = @xml_hash.mitigation.map do |mitigation|
+                MitigationType.new(mitigation)
+              end
+            else
+              @mitigations << MitigationType.new(@xml_hash.mitigation) 
+            end
+          end
+        rescue NoMethodError
+        end
+        
+        return @mitigations
+      end
     end
     
     class ExploitabilityAdjustment < Base
-      xml_reader :note
-      xml_reader :score_adjustment, :from => :attr
+      api_field :note, :tag => :note
+      api_field :score_adjustment, :tag => :score_adjustment
     end
     
     class ExploitAdjustment < Base
-      xml_reader :exploitability_adjustment, :as => ExploitabilityAdjustment
+      def exploitability_adjustment
+        @exploitability_adjustments ||= [] 
+        begin
+          if @exploitability_adjustments.empty?
+            if @xml_hash.exploitability_adjustment.class == Array 
+              @exploitability_adjustments = @xml_hash.exploitability_adjustment.map do |exploitability_adjustment|
+                ExploitabilityAdjustment.new(exploitability_adjustment)
+              end
+            else
+              @exploitability_adjustments << ExploitabilityAdjustment.new(@xml_hash.exploitability_adjustment) 
+            end
+          end
+        rescue NoMethodError
+        end
+        
+        return @exploitability_adjustments
+      end
     end
     
     class Flaw < Base
-      xml_reader :severity, :from => :attr
-      xml_reader :categoryname, :from => :attr
-      xml_reader :count, :from => :attr
-      xml_reader :issueid, :from => :attr
-      xml_reader :module, :from => :attr
-      xml_reader :type, :from => :attr
-      xml_reader :description, :from => :attr
-      xml_reader :note, :from => :attr
-      xml_reader :cweid, :from => :attr
-      xml_reader :remediationeffort, :from => :attr
-      xml_reader :exploitLevel, :from => :attr
-      xml_reader :categoryid, :from => :attr
-      xml_reader :pcirelated?, :from => :attr
-      xml_reader :date_first_occurrence, :from => :attr
-      xml_reader :remediation_status, :from => :attr
-      xml_reader :sourcefile, :from => :attr
-      xml_reader :line, :from => :attr
-      xml_reader :sourcefilepath, :from => :attr
-      xml_reader :scope, :from => :attr
-      xml_reader :functionprototype, :from => :attr
-      xml_reader :functionrelativelocation, :from => :attr
-      xml_reader :url, :from => :attr
-      xml_reader :vuln_parameter, :from => :attr
-      xml_reader :location, :from => :attr
-      xml_reader :cvss, :from => :attr
-      xml_reader :capecid, :from => :attr
-      xml_reader :exploitdifficulty, :from => :attr
-      xml_reader :inputvector, :from => :attr
-      xml_reader :cia_impact, :from => :attr
-      xml_reader :grace_period_expires, :from => :attr
-      xml_reader :affects_policy_compliance?, :from => :attr
+      api_field :severity, :tag => :severity
+      api_field :categoryname, :tag => :categoryname
+      api_field :count, :tag => :count
+      api_field :issueid, :tag => :issueid
+      api_field :module, :tag => :module
+      api_field :type, :tag => :type
+      api_field :description, :tag => :description
+      api_field :note, :tag => :note
+      api_field :cweid, :tag => :cweid
+      api_field :remediationeffort, :tag => :remediationeffort
+      api_field :exploitlevel, :tag => :exploitLevel
+      api_field :categoryid, :tag => :categoryid
+      api_field :date_first_occurrence, :tag => :date_first_occurrence
+      api_field :remediation_status, :tag => :remediation_status
+      api_field :sourcefile, :tag => :sourcefile
+      api_field :line, :tag => :line
+      api_field :sourcefilepath, :tag => :sourcefilepath
+      api_field :scope, :tag => :scope
+      api_field :functionprototype, :tag => :functionprototype
+      api_field :functionrelativelocation, :tag => :functionrelativelocation
+      api_field :url, :tag => :url
+      api_field :vuln_parameter, :tag => :vuln_parameter
+      api_field :location, :tag => :location
+      api_field :cvss, :tag => :cvss
+      api_field :capecid, :tag => :capecid
+      api_field :exploitdifficulty, :tag => :exploitdifficulty
+      api_field :inputvector, :tag => :inputvector
+      api_field :cia_impact, :tag => :cia_impact
+      api_field :grace_period_expires, :tag => :grace_period_expires
       
-      xml_reader :exploit_desc
-      xml_reader :severity_desc
-      xml_reader :remediation_desc
-      xml_reader :exploitability_adjustments, :as => ExploitAdjustment
-      xml_reader :appendix, :as => AppendixType
-      xml_reader :mitigations, :as => Mitigations
-      xml_reader :annotations, :as => Annotations
+      def pcirelated?
+        @pcirelated ||= @xml_hash.pcirelated.to_bool
+      end
+      
+      def affects_policy_compliance?
+        @affects_policy_compliance ||= @xml_hash.affects_policy_compliance.to_bool
+      end
+      
+      api_field :exploit_desc, :tag => :exploit_desc
+      api_field :severity_desc, :tag => :severity_desc
+      api_field :remediation_desc, :tag => :remediation_desc
+ 
+      api_type_field :exploitability_adjustments, :tag => :exploitability_adjustments, :as => ExploitAdjustment
+      api_type_field :appendix, :tag => :appendix, :as => AppendixType
+      api_type_field :mitigations, :tag => :mitigations, :as => Mitigations
+      api_type_field :annotations, :tag => :annotations, :as => Annotations
     end
     
     class Flaws < Base
-      xml_reader :flaws, :as => [Flaw]
+      def flaws
+        @flaws ||= [] 
+        begin
+          if @flaws.empty?
+            if @xml_hash.flaw.class == Array 
+              @flaws = @xml_hash.flaw.map do |flaw|
+                Flaw.new(flaw)
+              end
+            else
+              @flaws << Flaw.new(@xml_hash.flaw) 
+            end
+          end
+        rescue NoMethodError
+        end
+        
+        return @flaws
+      end
     end
   end
 end
+      
