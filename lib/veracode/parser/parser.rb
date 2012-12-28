@@ -1,5 +1,5 @@
 require 'nori'
-
+require 'pp'
 require 'rexml/document'
 
 class ::String
@@ -35,9 +35,8 @@ module Veracode
       parser = XML::SAXParser.new()  
       parser.options = {}
       REXML::Document.parse_stream(xml, parser)
-      
+     
       parser.stack.length > 0 ? parser.stack.pop.to_hash : {}
-      
     end
   end
   
@@ -50,7 +49,7 @@ module Veracode
       end
       
       def tag_start(name, attrs)
-        stack.push Nori::XMLUtilityNode.new(options, name, Hash[*attrs.flatten])
+        stack.push Nori::XMLUtilityNode.new(options, name, Hash[*attrs.flatten]) 
       end
 
       def tag_end(name)

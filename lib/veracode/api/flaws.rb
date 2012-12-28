@@ -2,14 +2,14 @@ require 'veracode/api/types'
 
 module Veracode
   module Result
-    class AnnotationType < Base
+    class AnnotationType < Veracode::Common::Base
       api_field :action, :tag => :action
       api_field :description, :tag => :description
       api_field :user, :tag => :user
       api_field :date, :tag => :date
     end
     
-    class Annotations < Base
+    class Annotations < Veracode::Common::Base
       def annotation
         @annotations ||= [] 
         begin
@@ -29,14 +29,14 @@ module Veracode
       end
     end
     
-    class MitigationType < Base
+    class MitigationType < Veracode::Common::Base
       api_field :action, :tag => :action
       api_field :description, :tag => :description
       api_field :user, :tag => :user
       api_field :date, :tag => :date
     end
     
-    class Mitigations < Base
+    class Mitigations < Veracode::Common::Base
       def mitigation
         @mitigations ||= [] 
         begin
@@ -56,12 +56,12 @@ module Veracode
       end
     end
     
-    class ExploitabilityAdjustment < Base
+    class ExploitabilityAdjustment < Veracode::Common::Base
       api_field :note, :tag => :note
       api_field :score_adjustment, :tag => :score_adjustment
     end
     
-    class ExploitAdjustment < Base
+    class ExploitAdjustment < Veracode::Common::Base
       def exploitability_adjustment
         @exploitability_adjustments ||= [] 
         begin
@@ -81,7 +81,7 @@ module Veracode
       end
     end
     
-    class Flaw < Base
+    class Flaw < Veracode::Common::Base
       api_field :severity, :tag => :severity
       api_field :categoryname, :tag => :categoryname
       api_field :count, :tag => :count
@@ -130,7 +130,7 @@ module Veracode
       api_type_field :annotations, :tag => :annotations, :as => Annotations
     end
     
-    class Flaws < Base
+    class Flaws < Veracode::Common::Base
       def flaws
         @flaws ||= [] 
         begin

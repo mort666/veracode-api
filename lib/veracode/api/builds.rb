@@ -3,13 +3,13 @@ require 'veracode/api/types'
 module Veracode 
   module Result
     module Builds 
-      class AnalysisUnit < Base 
+      class AnalysisUnit < Veracode::Common::Base 
         api_field :analysis_type, :tag => :analysis_type
         api_field :status, :tag => :status
         api_field :published_date, :tag => :published_date
       end
       
-      class Build < Base 
+      class Build < Veracode::Common::Base 
         api_field :version, :tag => :version
         api_field :build_id, :tag => :build_id
         api_field :submitter, :tag => :submitter
@@ -47,7 +47,7 @@ module Veracode
         end
       end
       
-      class Application < Base
+      class Application < Veracode::Common::Base
         api_field :app_name, :tag => :app_name
         api_field :app_id, :tag => :app_id
         api_field :industry_vertical, :tag => :industry_vertical
@@ -76,7 +76,7 @@ module Veracode
         end        
       end
       
-      class Applications < Base
+      class Applications < Veracode::Common::Base
         def applications
           @applications ||= []
           if @applications.empty?

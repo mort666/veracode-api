@@ -622,7 +622,7 @@ http_interactions:
         </applicationbuilds>
 
 '
-    http_version: !!null 
+    http_version: 
   recorded_at: Wed, 06 Jun 2012 16:19:23 GMT
 - request:
     method: get
@@ -6575,7 +6575,7 @@ http_interactions:
         level=\"1\"/>\n<severity level=\"0\"/>\n<flaw-status new=\"190\" reopen=\"0\"
         open=\"0\" fixed=\"0\" total=\"190\" not_mitigated=\"190\" sev-1-change=\"0\"
         sev-2-change=\"14\" sev-3-change=\"148\" sev-4-change=\"22\" sev-5-change=\"6\"/>\n</detailedreport>\n"
-    http_version: !!null 
+    http_version: 
   recorded_at: Wed, 06 Jun 2012 16:25:28 GMT
 - request:
     method: get
@@ -6725,6 +6725,513 @@ http_interactions:
         </summaryreport>
 
 '
-    http_version: !!null 
+    http_version: 
   recorded_at: Wed, 06 Jun 2012 22:41:58 GMT
+- request:
+    method: get
+    uri: https://test:test0@analysiscenter.veracode.com/api/4.0/getappinfo.do?app_id=32338
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Pragma:
+      - ''
+      Cache-Control:
+      - no-store private must-revalidate
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - JSESSIONID=A0033CE0C654E8CD5CE37D5AC09B9AA2; Path=/; Secure
+      - JSESSIONID=D1193E4F0EBA5FC9AE3B34AA635CC2D6; Path=/; Secure
+      Content-Type:
+      - text/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 28 Dec 2012 00:41:38 GMT
+      Server:
+      - Apache
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+
+        <appinfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://analysiscenter.veracode.com/schema/2.0/appinfo"
+        xsi:schemaLocation="https://analysiscenter.veracode.com/schema/2.0/appinfo
+        https://analysiscenter.veracode.com/resource/2.0/appinfo.xsd" account_id="15834">
+
+        <application app_id="32338" app_name="WebGoat" description="WebGoat is a teaching
+        web application illustrating common web vulnerabilities." business_criticality="Very
+        High" policy="Veracode Transitional Very High" teams="" origin="Open Source"
+        industry_vertical="Other" app_type="Other" deployment_method="Not Specified"
+        is_web_application="true" modified_date="2012-03-01T10:03:59-05:00" cots="false"
+        business_unit="Not Specified" tags="">
+
+        <customfield name="Custom 1" value=""/>
+
+        <customfield name="Custom 2" value=""/>
+
+        <customfield name="Custom 3" value=""/>
+
+        <customfield name="Custom 4" value=""/>
+
+        <customfield name="Custom 5" value=""/>
+
+        </application>
+
+        </appinfo>
+
+'
+    http_version: 
+  recorded_at: Fri, 28 Dec 2012 00:41:38 GMT
+- request:
+    method: get
+    uri: https://test:test@analysiscenter.veracode.com/api/4.0/getbuildinfo.do?app_id=32338&build_id=44905
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Pragma:
+      - ''
+      Cache-Control:
+      - no-store private must-revalidate
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - JSESSIONID=689834BA39FE993454C92F56DABA5B8F; Path=/; Secure
+      - JSESSIONID=728A82312AC42990254151DB064AE12B; Path=/; Secure
+      Content-Type:
+      - text/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 28 Dec 2012 00:41:39 GMT
+      Server:
+      - Apache
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+
+        <buildinfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://analysiscenter.veracode.com/schema/4.0/buildinfo"
+        xsi:schemaLocation="https://analysiscenter.veracode.com/schema/4.0/buildinfo
+        https://analysiscenter.veracode.com/resource/4.0/buildinfo.xsd" account_id="15834"
+        app_id="32338" build_id="44905">
+
+        <build version="5.0" build_id="44905" submitter="Veracode" platform="Java"
+        lifecycle_stage="External or Beta Testing" results_ready="true" policy_name="Veracode
+        Transitional Very High" policy_version="1" policy_compliance_status="Did Not
+        Pass" rules_status="Did Not Pass" grace_period_expired="false" scan_overdue="false">
+
+        <analysis_unit analysis_type="Static" published_date="2012-03-01T09:26:18-05:00"
+        published_date_sec="1330611978" status="Results Ready"/>
+
+        <analysis_unit analysis_type="Dynamic" published_date="2012-03-01T10:03:50-05:00"
+        published_date_sec="1330614230" status="Results Ready"/>
+
+        <analysis_unit analysis_type="Manual" published_date="2012-03-01T09:59:14-05:00"
+        published_date_sec="1330613954" status="Results Ready"/>
+
+        </build>
+
+        </buildinfo>
+
+'
+    http_version: 
+  recorded_at: Fri, 28 Dec 2012 00:41:40 GMT
+- request:
+    method: get
+    uri: https://test:test@analysiscenter.veracode.com/api/4.0/getappinfo.do?app_id=32338
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Pragma:
+      - ''
+      Cache-Control:
+      - no-store private must-revalidate
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - JSESSIONID=AC79A79FE8F278628C9413352ABA3EDA; Path=/; Secure
+      - JSESSIONID=B4C7CD19AC64B62199ABCDF935E6F329; Path=/; Secure
+      Content-Type:
+      - text/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 28 Dec 2012 00:48:32 GMT
+      Server:
+      - Apache
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+
+        <appinfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://analysiscenter.veracode.com/schema/2.0/appinfo"
+        xsi:schemaLocation="https://analysiscenter.veracode.com/schema/2.0/appinfo
+        https://analysiscenter.veracode.com/resource/2.0/appinfo.xsd" account_id="15834">
+
+        <application app_id="32338" app_name="WebGoat" description="WebGoat is a teaching
+        web application illustrating common web vulnerabilities." business_criticality="Very
+        High" policy="Veracode Transitional Very High" teams="" origin="Open Source"
+        industry_vertical="Other" app_type="Other" deployment_method="Not Specified"
+        is_web_application="true" modified_date="2012-03-01T10:03:59-05:00" cots="false"
+        business_unit="Not Specified" tags="">
+
+        <customfield name="Custom 1" value=""/>
+
+        <customfield name="Custom 2" value=""/>
+
+        <customfield name="Custom 3" value=""/>
+
+        <customfield name="Custom 4" value=""/>
+
+        <customfield name="Custom 5" value=""/>
+
+        </application>
+
+        </appinfo>
+
+'
+    http_version: 
+  recorded_at: Fri, 28 Dec 2012 00:48:32 GMT
+- request:
+    method: get
+    uri: https://test:test@analysiscenter.veracode.com/api/4.0/getbuildinfo.do?app_id=32338&build_id=44905
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Pragma:
+      - ''
+      Cache-Control:
+      - no-store private must-revalidate
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - JSESSIONID=A943D07F8F4AAA47113395890027CD5F; Path=/; Secure
+      - JSESSIONID=F9275C069942333505F9D1BB8C2AAC72; Path=/; Secure
+      Content-Type:
+      - text/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 28 Dec 2012 00:48:34 GMT
+      Server:
+      - Apache
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+
+        <buildinfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://analysiscenter.veracode.com/schema/4.0/buildinfo"
+        xsi:schemaLocation="https://analysiscenter.veracode.com/schema/4.0/buildinfo
+        https://analysiscenter.veracode.com/resource/4.0/buildinfo.xsd" account_id="15834"
+        app_id="32338" build_id="44905">
+
+        <build version="5.0" build_id="44905" submitter="Veracode" platform="Java"
+        lifecycle_stage="External or Beta Testing" results_ready="true" policy_name="Veracode
+        Transitional Very High" policy_version="1" policy_compliance_status="Did Not
+        Pass" rules_status="Did Not Pass" grace_period_expired="false" scan_overdue="false">
+
+        <analysis_unit analysis_type="Static" published_date="2012-03-01T09:26:18-05:00"
+        published_date_sec="1330611978" status="Results Ready"/>
+
+        <analysis_unit analysis_type="Dynamic" published_date="2012-03-01T10:03:50-05:00"
+        published_date_sec="1330614230" status="Results Ready"/>
+
+        <analysis_unit analysis_type="Manual" published_date="2012-03-01T09:59:14-05:00"
+        published_date_sec="1330613954" status="Results Ready"/>
+
+        </build>
+
+        </buildinfo>
+
+'
+    http_version: 
+  recorded_at: Fri, 28 Dec 2012 00:48:34 GMT
+- request:
+    method: get
+    uri: https://test:test@analysiscenter.veracode.com/api/4.0/getappinfo.do?app_id=32338
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Pragma:
+      - ''
+      Cache-Control:
+      - no-store private must-revalidate
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - JSESSIONID=0F9F741C1F9F28C3BA8CC599822F2309; Path=/; Secure
+      - JSESSIONID=19EE1A474A6325BEA3E74A568412C8F5; Path=/; Secure
+      Content-Type:
+      - text/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 28 Dec 2012 01:19:47 GMT
+      Server:
+      - Apache
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+
+        <appinfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://analysiscenter.veracode.com/schema/2.0/appinfo"
+        xsi:schemaLocation="https://analysiscenter.veracode.com/schema/2.0/appinfo
+        https://analysiscenter.veracode.com/resource/2.0/appinfo.xsd" account_id="15834">
+
+        <application app_id="32338" app_name="WebGoat" description="WebGoat is a teaching
+        web application illustrating common web vulnerabilities." business_criticality="Very
+        High" policy="Veracode Transitional Very High" teams="" origin="Open Source"
+        industry_vertical="Other" app_type="Other" deployment_method="Not Specified"
+        is_web_application="true" modified_date="2012-03-01T10:03:59-05:00" cots="false"
+        business_unit="Not Specified" tags="">
+
+        <customfield name="Custom 1" value=""/>
+
+        <customfield name="Custom 2" value=""/>
+
+        <customfield name="Custom 3" value=""/>
+
+        <customfield name="Custom 4" value=""/>
+
+        <customfield name="Custom 5" value=""/>
+
+        </application>
+
+        </appinfo>
+
+'
+    http_version: 
+  recorded_at: Fri, 28 Dec 2012 01:19:47 GMT
+- request:
+    method: get
+    uri: https://test:test@analysiscenter.veracode.com/api/4.0/getapplist.do
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Pragma:
+      - ''
+      Cache-Control:
+      - no-store private must-revalidate
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - JSESSIONID=1EE0A29377623DFBE6BA6A3436F2394A; Path=/; Secure
+      - JSESSIONID=6F94C2819AD0611429D8A0EEC828248C; Path=/; Secure
+      Content-Type:
+      - text/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 28 Dec 2012 01:19:48 GMT
+      Server:
+      - Apache
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+
+        <applist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://analysiscenter.veracode.com/schema/2.0/applist"
+        xsi:schemaLocation="https://analysiscenter.veracode.com/schema/2.0/applist
+        https://analysiscenter.veracode.com/resource/2.0/applist.xsd" account_id="15834">
+
+        <app app_id="33715" app_name="Ajax-Login"/>
+
+        <app app_id="32346" app_name="Apache"/>
+
+        <app app_id="41311" app_name="Auth Service"/>
+
+        <app app_id="32344" app_name="BlogEngine.NET"/>
+
+        <app app_id="32347" app_name="Galleon"/>
+
+        <app app_id="32333" app_name="Hadoop"/>
+
+        <app app_id="32345" app_name="HSQLdb"/>
+
+        <app app_id="33136" app_name="iGoat"/>
+
+        <app app_id="32343" app_name="iOS Traveler"/>
+
+        <app app_id="32342" app_name="Lunar Lander"/>
+
+        <app app_id="32335" app_name="Metamail"/>
+
+        <app app_id="32339" app_name="midpssh-BB"/>
+
+        <app app_id="32336" app_name="Open SSH"/>
+
+        <app app_id="35247" app_name="Open Web Analytics"/>
+
+        <app app_id="40775" app_name="Pastie"/>
+
+        <app app_id="32363" app_name="PHP Vulnerable Web App (Test)"/>
+
+        <app app_id="32721" app_name="PHP Vulnerable Web App (Test2)"/>
+
+        <app app_id="32341" app_name="phpBB"/>
+
+        <app app_id="32337" app_name="Roller"/>
+
+        <app app_id="36862" app_name="Test Application"/>
+
+        <app app_id="36863" app_name="Test Application 3"/>
+
+        <app app_id="36914" app_name="Test Application 4"/>
+
+        <app app_id="32491" app_name="TEst C App"/>
+
+        <app app_id="32503" app_name="Test C App Preflight"/>
+
+        <app app_id="37693" app_name="VOSAO"/>
+
+        <app app_id="32338" app_name="WebGoat"/>
+
+        </applist>
+
+'
+    http_version: 
+  recorded_at: Fri, 28 Dec 2012 01:19:48 GMT
+- request:
+    method: get
+    uri: https://test:test@analysiscenter.veracode.com/api/4.0/getbuildinfo.do?app_id=32338&build_id=44905
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Pragma:
+      - ''
+      Cache-Control:
+      - no-store private must-revalidate
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - JSESSIONID=DDCD093388D21E239C7B1E1A6773DCC4; Path=/; Secure
+      - JSESSIONID=FF43022D2935BBD32589AC39193FFECA; Path=/; Secure
+      Content-Type:
+      - text/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 28 Dec 2012 01:22:14 GMT
+      Server:
+      - Apache
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+
+        <buildinfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://analysiscenter.veracode.com/schema/4.0/buildinfo"
+        xsi:schemaLocation="https://analysiscenter.veracode.com/schema/4.0/buildinfo
+        https://analysiscenter.veracode.com/resource/4.0/buildinfo.xsd" account_id="15834"
+        app_id="32338" build_id="44905">
+
+        <build version="5.0" build_id="44905" submitter="Veracode" platform="Java"
+        lifecycle_stage="External or Beta Testing" results_ready="true" policy_name="Veracode
+        Transitional Very High" policy_version="1" policy_compliance_status="Did Not
+        Pass" rules_status="Did Not Pass" grace_period_expired="false" scan_overdue="false">
+
+        <analysis_unit analysis_type="Static" published_date="2012-03-01T09:26:18-05:00"
+        published_date_sec="1330611978" status="Results Ready"/>
+
+        <analysis_unit analysis_type="Dynamic" published_date="2012-03-01T10:03:50-05:00"
+        published_date_sec="1330614230" status="Results Ready"/>
+
+        <analysis_unit analysis_type="Manual" published_date="2012-03-01T09:59:14-05:00"
+        published_date_sec="1330613954" status="Results Ready"/>
+
+        </build>
+
+        </buildinfo>
+
+'
+    http_version: 
+  recorded_at: Fri, 28 Dec 2012 01:22:14 GMT
+- request:
+    method: get
+    uri: https://test:test@analysiscenter.veracode.com/api/4.0/getbuildlist.do?app_id=32338
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Pragma:
+      - ''
+      Cache-Control:
+      - no-store private must-revalidate
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Set-Cookie:
+      - JSESSIONID=57162CBB9652D68F2C92C8CB474F6BD1; Path=/; Secure
+      - JSESSIONID=60B5BAE3476DA4F272679F8BD560E6DD; Path=/; Secure
+      Content-Type:
+      - text/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 28 Dec 2012 13:00:22 GMT
+      Server:
+      - Apache
+    body:
+      encoding: US-ASCII
+      string: ! '<?xml version="1.0" encoding="UTF-8"?>
+
+
+        <buildlist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://analysiscenter.veracode.com/schema/2.0/buildlist"
+        xsi:schemaLocation="https://analysiscenter.veracode.com/schema/2.0/buildlist
+        https://analysiscenter.veracode.com/resource/2.0/buildlist.xsd" account_id="15834"
+        app_id="32338" app_name="WebGoat">
+
+        <build build_id="44905" version="5.0"/>
+
+        </buildlist>
+
+'
+    http_version: 
+  recorded_at: Fri, 28 Dec 2012 13:00:22 GMT
 recorded_with: VCR 2.2.0

@@ -20,8 +20,8 @@ module Veracode
     	  case xml.code
   	    when 200
   	      clean_xml = xml.body.strip
-  	      parsed = Veracode::Parser.parse(clean_xml)
-          builds = Veracode::Result::Builds::Applications.new(parsed)
+  	      parsed = Veracode::Parser.parse(clean_xml) 
+  	      builds = Veracode::Result::Builds::Applications.new(parsed)
         else
           xml.error!
         end
@@ -42,9 +42,11 @@ module Veracode
     	def get_detailed_report(build_id)
     	  xml = getXML(DETAILED_REPORT_URI + "?build_id=" + build_id)
     	  case xml.code
-  	    when 200
-    	    clean_xml = xml.body.strip
+  	    when 200  
+  	      xmlbody = xml.body
+    	    clean_xml = xmlbody.strip
   	      parsed = Veracode::Parser.parse(clean_xml)          
+
     	    report = Veracode::Result::DetailedReport.new(parsed.detailedreport)
     	  else
           xml.error!

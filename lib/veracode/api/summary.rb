@@ -4,13 +4,13 @@ require 'veracode/api/flaws'
 module Veracode
   module Result
     
-      class SummaryCategory < Base
+      class SummaryCategory < Veracode::Common::Base
         api_field :categoryname, :tag => :categoryname
         api_field :severity, :tag => :severity
         api_field :count, :tag => :count
       end
 
-      class SummarySeverity < Base
+      class SummarySeverity < Veracode::Common::Base
         api_field :level, :tag => :level
         
         def categories
@@ -32,7 +32,7 @@ module Veracode
         end
       end
     
-    class SummaryReport < Base
+    class SummaryReport < Veracode::Common::Base
       api_field :report_format_version, :tag => :report_format_version
       api_field :app_name, :tag => :app_name
       api_field :app_id, :tag => :app_id

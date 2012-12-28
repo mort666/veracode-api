@@ -4,13 +4,17 @@ require 'base64'
 # Veracode API General Types used by Summary and Detailed results as well as Application Build API 
 #
 module Veracode
-  module Result 
+  module Common
     # Base Class for result
     class Base
       
       def self.api_field(name, args)  
         send(:define_method, name) do   
-          return @xml_hash.send(args[:tag].to_sym) 
+          begin
+            return @xml_hash.send(args[:tag].to_sym)
+          rescue NoMethodError
+            return nil
+          end
         end
       end    
       
@@ -22,6 +26,7 @@ module Veracode
             instance_variable_set("@#{name}", tmp) 
             return tmp
           rescue NoMethodError
+            return nil
           end
         end   
       end
@@ -30,8 +35,10 @@ module Veracode
         @xml_hash = xml_hash
       end 
     end
-    
-    class Screenshot < Base
+  end
+  
+  module Result 
+    class Screenshot < Veracode::Common::Base
       api_field :format, :tag => :format            
       
       def data
@@ -42,11 +49,11 @@ module Veracode
       #xml_reader(:data) {|b64data| Base64.decode64(b64data) }
     end
     
-    class BulletType < Base
+    class BulletType < Veracode::Common::Base
       api_field :text, :tag => :text
     end
     
-    class ParaType  < Base
+    class ParaType  < Veracode::Common::Base
       #xml_reader :bulletitem, :as => [BulletType]
       api_field :text, :tag => :text
       
@@ -68,11 +75,11 @@ module Veracode
       end
     end
     
-    class TextType < Base
+    class TextType < Veracode::Common::Base
       #xml_reader :text, :from => "text/@text"
     end
     
-    class Para < Base
+    class Para < Veracode::Common::Base
       #xml_reader :para, :as => [ParaType] 
       def para
         @paras ||= []
@@ -89,7 +96,7 @@ module Veracode
       end
     end
     
-    class AppendixType < Base
+    class AppendixType < Veracode::Common::Base
       api_field :description, :tag => :description
       #xml_reader :screenshot, :as => [Screenshot]
       def screenshot
@@ -111,7 +118,7 @@ module Veracode
       api_field :code, :tag => :code
     end
     
-    class Module < Base
+    class Module < Veracode::Common::Base
       api_field :name, :tag => :name
       api_field :compiler, :tag => :compiler
       api_field :os, :tag => :os
@@ -125,7 +132,7 @@ module Veracode
       api_field :numflawssev5, :tag => :numflawssev5
     end
     
-    class Analysis < Base
+    class Analysis < Veracode::Common::Base
 
       api_field :analysis_size_bytes, :tag => :analysis_size_bytes
       api_field :rating, :tag => :rating
@@ -151,7 +158,7 @@ module Veracode
         end
     end
       
-    class ManualAnalysis < Base
+    class ManualAnalysis < Veracode::Common::Base
        api_field :rating, :tag => :rating
        api_field :score, :tag => :score
        api_field :mitigated_rating, :tag => :mitigated_rating
@@ -177,7 +184,7 @@ module Veracode
         end
     end
     
-    class FlawStatus < Base
+    class FlawStatus < Veracode::Common::Base
       api_field :new_flaws, :tag => :new
       api_field :reopen_flaws, :tag => :reopen
       #api_field :open_flaws, :tag => :open 

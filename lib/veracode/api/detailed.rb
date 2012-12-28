@@ -3,7 +3,7 @@ require 'veracode/api/flaws'
 
 module Veracode
   module Result
-    class CWE < Base
+    class CWE < Veracode::Common::Base
       api_field :cweid, :tag => :cweid
       api_field :cwename, :tag => :cwename
       
@@ -21,7 +21,7 @@ module Veracode
 
     end
     
-    class Category < Base 
+    class Category < Veracode::Common::Base 
       api_field :categoryid, :tag => :categoryid
       api_field :categoryname, :tag => :categoryname
       api_type_field :desc, :tag => :desc, :as => Para 
@@ -84,7 +84,7 @@ module Veracode
       end
     end
     
-    class Severity < Base
+    class Severity < Veracode::Common::Base
       api_field :level, :tag => :level
       
       def categories
@@ -106,7 +106,7 @@ module Veracode
       end
     end
     
-    class DetailedReport < Base
+    class DetailedReport < Veracode::Common::Base
       
       api_field :report_format_version, :tag => :report_format_version
       api_field :app_name, :tag => :app_name
