@@ -55,6 +55,9 @@ module Veracode
         api_field :business_criticality, :tag => :business_criticality
         api_field :origin, :tag => :origin
         api_field :business_unit, :tag => :business_unit
+        api_field :business_owner, :tag => :business_owner
+        api_field :modified_date, :tag => :modified_date
+        api_field :vendor, :tag => :vendor
         api_field :tags, :tag => :tags
         
         def cots?
