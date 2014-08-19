@@ -27,6 +27,14 @@ module Veracode
         end
       end
     
+      def postAPI(path, query={}, debug=false)
+        auth = { :username => @username, :password => @password }
+        
+        options = { :query => query, :basic_auth => auth }
+        
+        self.class.post(path, options)
+      end
+      
       def getXML(path, debug=false)
         auth = { :username => @username, :password => @password }
 
