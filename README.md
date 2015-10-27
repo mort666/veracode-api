@@ -6,7 +6,9 @@ Ruby Wrapper for the Veracode API
 About
 -----
 
-This Gem puts a wrapper around the Veracode API to allow access to API functionality to view reports, perform uploads and administer accounts.
+This Gem puts a wrapper around the Veracode API to allow access to API functionality to view reports, perform uploads and administer accounts. 
+
+This gem is not used as part of packaging for a Veracode scan of a Ruby on Rails application.
 
 How to use it
 -------------
@@ -33,4 +35,4 @@ Found an issue, please report it on Github
 
 	https://github.com/mort666/veracode-api
 	
-Copyright (c) 2012 Stephen Kapp, released under the Apache License, Version 2.0
+Copyright (c) 2012-2015 Stephen Kapp, released under the Apache License, Version 2.0

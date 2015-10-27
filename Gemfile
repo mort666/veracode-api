@@ -6,6 +6,8 @@ group :test do
   gem 'turn'
   gem 'minitest'
   gem 'rake'
+  gem 'pry'
+  gem 'plymouth'
 end
 
 # Specify your gem's dependencies in veracode.gemspec
