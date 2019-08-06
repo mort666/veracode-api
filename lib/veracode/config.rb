@@ -2,9 +2,9 @@ module Veracode
   module API
     module Config
       VALID_OPTIONS_KEYS = [
-            :username,
-            :password].freeze
-          
+            :veracode_id,
+            :veracode_key].freeze
+
       attr_accessor *VALID_OPTIONS_KEYS
 
       def configure

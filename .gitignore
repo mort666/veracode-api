@@ -1,6 +1,7 @@
 *.gem
 .bundle
 Gemfile.lock
+.byebug_history
 pkg/*
 
 .DS_Store
