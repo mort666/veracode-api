@@ -1,15 +1,15 @@
 require 'veracode/api/types'
 
-module Veracode 
+module Veracode
   module Result
-    module Builds 
-      class AnalysisUnit < Veracode::Common::Base 
+    module Builds
+      class AnalysisUnit < Veracode::Common::Base
         api_field :analysis_type, :tag => :analysis_type
         api_field :status, :tag => :status
         api_field :published_date, :tag => :published_date
       end
-      
-      class Build < Veracode::Common::Base 
+
+      class Build < Veracode::Common::Base
         api_field :version, :tag => :version
         api_field :build_id, :tag => :build_id
         api_field :submitter, :tag => :submitter
@@ -19,19 +19,19 @@ module Veracode
         api_field :policy_version, :tag => :policy_version
         api_field :policy_compliance_status, :tag => :policy_compliance_status
         api_field :rules_status, :tag => :rules_status
-        
+
         def grace_period_expired?
           @grace_period_expired ||= @xml_hash.grace_period_expired.to_bool
         end
-        
+
         def scan_overdue?
           @scan_overdue ||= @xml_hash.scan_overdue.to_bool
         end
-        
+
         def results_ready?
           @results_ready ||= @xml_hash.results_ready.to_bool
         end
-                
+
         def analysis_units
           @analysis_units ||= []
           if @analysis_units.empty?
@@ -46,7 +46,12 @@ module Veracode
           return @analysis_units
         end
       end
-      
+
+      class CustomField < Veracode::Common::Base
+        api_field :name, :tag => :name
+        api_field :value, :tag => :value
+      end
+
       class Application < Veracode::Common::Base
         api_field :app_name, :tag => :app_name
         api_field :app_id, :tag => :app_id
@@ -59,26 +64,34 @@ module Veracode
         api_field :modified_date, :tag => :modified_date
         api_field :vendor, :tag => :vendor
         api_field :tags, :tag => :tags
-        
+
+        def custom_fields
+          @custom_fields ||=
+              @xml_hash.customfield.map do |customfield|
+                CustomField.new(customfield)
+              end
+        end
+
         def cots?
           @cots ||= @xml_hash.cots.to_bool
         end
-        
+
         def builds
-          @builds ||= []
-          if @builds.empty?
-            if @xml_hash.build.class == Array
-              @builds = @xml_hash.build.map do |build|
-                Build.new(build)
+          @builds ||=
+              if @xml_hash.include?('build')
+                if @xml_hash.build.class == Array
+                  @builds = @xml_hash.build.map do |build|
+                    Build.new(build)
+                  end
+                else
+                  @builds = [Build.new(@xml_hash.build)]
+                end
+              else
+                []
               end
-            else
-              @builds << Build.new(@xml_hash.build)
-            end
-          end
-          return @builds
-        end        
+        end
       end
-      
+
       class Applications < Veracode::Common::Base
         def applications
           @applications ||= []
@@ -89,7 +102,7 @@ module Veracode
           end
         end
       end
-              
+
     end
   end
 end
