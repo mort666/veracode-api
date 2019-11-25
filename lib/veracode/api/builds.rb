@@ -46,7 +46,12 @@ module Veracode
           return @analysis_units
         end
       end
-      
+
+      class CustomField < Veracode::Common::Base
+        api_field :name, :tag => :name
+        api_field :value, :tag => :value
+      end
+
       class Application < Veracode::Common::Base
         api_field :app_name, :tag => :app_name
         api_field :app_id, :tag => :app_id
@@ -59,7 +64,14 @@ module Veracode
         api_field :modified_date, :tag => :modified_date
         api_field :vendor, :tag => :vendor
         api_field :tags, :tag => :tags
-        
+
+        def custom_fields
+          @custom_fields ||=
+              @xml_hash.customfield.map do |customfield|
+                CustomField.new(customfield)
+              end
+        end
+
         def cots?
           @cots ||= @xml_hash.cots.to_bool
         end
