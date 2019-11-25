@@ -77,18 +77,19 @@ module Veracode
         end
         
         def builds
-          @builds ||= []
-          if @builds.empty?
-            if @xml_hash.build.class == Array
-              @builds = @xml_hash.build.map do |build|
-                Build.new(build)
+          @builds ||=
+              if @xml_hash.include?('build')
+                if @xml_hash.build.class == Array
+                  @builds = @xml_hash.build.map do |build|
+                    Build.new(build)
+                  end
+                else
+                  @builds = [Build.new(@xml_hash.build)]
+                end
+              else
+                []
               end
-            else
-              @builds << Build.new(@xml_hash.build)
-            end
-          end
-          return @builds
-        end        
+        end
       end
       
       class Applications < Veracode::Common::Base
