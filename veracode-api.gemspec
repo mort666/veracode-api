@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency "nori"
   s.add_dependency "nokogiri"
   s.add_dependency "xml-simple"
+  s.add_dependency "openssl"
   s.add_dependency "roxml"
   s.add_dependency "i18n"
 

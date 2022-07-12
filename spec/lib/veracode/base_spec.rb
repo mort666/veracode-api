@@ -15,18 +15,18 @@ describe Veracode::API::Base do
 
   describe "default instance attributes" do
 
-    let(:veracode) { Veracode::API::Base.new(:username => "veracode", :password => "password") }
+    let(:veracode) { Veracode::API::Base.new(:veracode_id => "veracode_id", :veracode_key => "veracode_key") }
 
     it "must have an id attribute" do
-      veracode.must_respond_to :username
+      veracode.must_respond_to :veracode_id
     end
 
     it "must have the right id" do
-      veracode.username.must_equal 'veracode'
+      veracode.veracode_id.must_equal 'veracode_id'
     end
 
     it "must have an password attribute" do
-      veracode.must_respond_to :password
+      veracode.must_respond_to :veracode_key
     end
 
     #it "must have the right password" do

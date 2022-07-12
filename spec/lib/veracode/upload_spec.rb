@@ -3,7 +3,7 @@ require (File.expand_path('./../../../spec_helper', __FILE__))
 describe Veracode::API::Upload do
   describe "GET build information" do
 
-    let(:veracode) { Veracode::API::Upload.new(:username => ENV['VERACODE_USER'], :password => ENV['VERACODE_PASS']) }
+    let(:veracode) { Veracode::API::Upload.new(:veracode_id => ENV['VERACODE_ID'], :veracode_key => ENV['VERACODE_KEY']) }
 
     before do
       VCR.insert_cassette 'upload', :record => :new_episodes

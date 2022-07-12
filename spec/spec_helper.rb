@@ -11,9 +11,6 @@ require 'turn'
 
 require 'dotenv'
 
-require 'pry'
-require 'plymouth'
-
 Dotenv.load
 
 Turn.config do |c|
