@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/mort666/veracode-api"
   s.summary     = %q{Veracode Analysis Service API Wrapper}
   s.description = %q{Ruby API Wrapper to access Veracode Security Analysis Service API. This gem is not used as part of packaging for a Veracode scan of a Ruby on Rails application, it is an API access wrapper.}
-
+  s.required_ruby_version = Gem::Requirement.new(">= 3.0.0")
   s.rubyforge_project = "veracode-api"
 
   s.files         = `git ls-files`.split("\n")
